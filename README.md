@@ -1,16 +1,62 @@
-# React + Vite
+# CV. Siroja Network — Company Profile Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website company profile modern untuk **CV. Siroja Network**, penyedia layanan internet (ISP) dan jasa instalasi CCTV profesional.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** + **Vite 8**
+- **Tailwind CSS v4** (PostCSS via `@tailwindcss/postcss`)
+- **ESLint** (react-hooks + react-refresh)
 
-## React Compiler
+## 📦 Instalasi & Menjalankan
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# Jalankan dev server
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Build production
+npm run build
+
+# Preview build
+npm run preview
+
+# Lint
+npm run lint
+```
+
+## 🗂️ Struktur Proyek
+
+```
+src/
+├── components/
+│   ├── Navbar.jsx          # Navigasi sticky dengan mobile menu
+│   ├── Hero.jsx            # Hero section dengan CTA & promo badge
+│   ├── WhyChooseUs.jsx     # 5 keunggulan layanan
+│   ├── InternetPackages.jsx # Paket internet (retail & bisnis)
+│   ├── CCTVSection.jsx     # Paket jasa instalasi CCTV
+│   ├── TargetAudience.jsx  # Segmen pelanggan
+│   ├── Footer.jsx          # Footer dengan copyright dinamis
+│   └── FloatingWA.jsx      # Tombol WhatsApp floating
+├── data/
+│   └── constants.js        # Konfigurasi global (nama, nomor WA, dll)
+├── App.jsx
+└── index.css               # Tailwind + animasi custom
+```
+
+## 📋 Fitur
+
+- ✅ Responsive & mobile-first
+- ✅ Tabel harga paket internet (retail & dedicated bisnis)
+- ✅ Showcase paket CCTV dengan spesifikasi lengkap
+- ✅ Tombol WhatsApp floating dengan animasi pulse
+- ✅ Smooth scroll antar section
+- ✅ SEO meta tags
+- ✅ Animasi & efek hover pada kartu harga
+
+## 📞 Kontak
+
+**CV. Siroja Network**
+WhatsApp: [081337239974](https://wa.me/6281337239974)
