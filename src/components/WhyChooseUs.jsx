@@ -57,7 +57,7 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="features" className="py-24 bg-slate-950 relative overflow-hidden">
+    <section id="features" className="py-28 bg-slate-950 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-40" />
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-800/10 rounded-full blur-3xl pointer-events-none" />
 

@@ -9,7 +9,7 @@ const audiences = [
 
 export default function TargetAudience() {
   return (
-    <section className="py-24 bg-slate-900 relative overflow-hidden">
+    <section className="py-28 bg-slate-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-20" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-40 bg-purple-700/5 blur-3xl pointer-events-none" />
 

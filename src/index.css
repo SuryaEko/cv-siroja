@@ -79,3 +79,26 @@ body {
   background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
   height: 1px;
 }
+
+/* ─── Accessible focus rings (apply to all interactive elements) ─ */
+a:focus-visible,
+button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #020617,
+    0 0 0 4px #8B5CF6;
+  border-radius: 0.5rem;
+}
+
+/* ─── Respect users who prefer reduced motion ──────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-fade-in-up,
+  .animate-wa-ping {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

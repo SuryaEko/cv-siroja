@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { COMPANY } from '../data/constants'
+import Logo from './Logo'
 
 const navLinks = [
   { label: 'Beranda',       href: '#hero'     },
   { label: 'Keunggulan',    href: '#features' },
   { label: 'Paket Internet',href: '#internet' },
   { label: 'CCTV',          href: '#cctv'     },
+  { label: 'Brosur',        href: '#brosur'   },
   { label: 'Kontak',        href: '#footer'   },
 ]
 
@@ -32,9 +34,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <a href="#hero" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-purple-900/40">
-              <span className="text-white font-black text-xs tracking-wide">SN</span>
-            </div>
+            <Logo size="sm" eager />
             <span className="text-white font-semibold text-base hidden sm:block">
               CV. Siroja <span className="text-purple-400">Network</span>
             </span>
@@ -56,7 +56,7 @@ export default function Navbar() {
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-3">
             <a
-              href={COMPANY.waLink}
+              href={COMPANY.waLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 shadow-md shadow-purple-900/30"
@@ -65,6 +65,7 @@ export default function Navbar() {
             </a>
             <button
               onClick={() => setMobileOpen(v => !v)}
+              aria-expanded={mobileOpen}
               className="md:hidden p-2 text-slate-400 hover:text-white transition-colors"
               aria-label="Toggle menu"
             >
@@ -93,7 +94,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href={COMPANY.waLink}
+                href={COMPANY.waLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold px-4 py-3 rounded-xl text-center transition-all"

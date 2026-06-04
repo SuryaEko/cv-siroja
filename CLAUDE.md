@@ -4,43 +4,58 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This repository currently contains only image assets (brochures, logos) and a README.md file. No source code is present at this time. The assets appear to be related to a CCTV installation business (based on file names).
+Company profile website for **CV. Siroja Network** — an ISP and CCTV installation service based in Indonesia. The site is a single-page React application (Bahasa Indonesia) that presents internet packages, CCTV installation services, and a WhatsApp contact channel.
 
-## Development Setup
+## Tech Stack
 
-When source code is added to this repository, development setup instructions should be documented here. This may include:
-- How to install dependencies
-- How to run a development server
-- How to run tests
-- How to lint the code
+- **React 19** (JSX only, no TypeScript)
+- **Vite 8** (dev server + bundler)
+- **Tailwind CSS v4** via `@tailwindcss/postcss` (NOT the legacy `tailwindcss` PostCSS plugin)
+- **ESLint** with `eslint-plugin-react-hooks` and `eslint-plugin-react-refresh`
+- No test framework configured
 
-## Common Tasks
+Tailwind v4 specifics: CSS uses `@import "tailwindcss"` and custom theme tokens use `@theme { --color-*: value; }` in CSS — not the v3 `@tailwind base/components/utilities` directives or `theme.extend` in the config alone.
 
-Once the codebase is established, common tasks such as:
-- Building the application
-- Running tests (including single test execution)
-- Linting and formatting
-- Starting a development server
-should be documented in this section.
+## Commands
 
-## Architecture Overview
+```bash
+npm install         # Install dependencies
+npm run dev         # Vite dev server with HMR
+npm run build       # Production build → dist/
+npm run preview     # Preview the production build locally
+npm run lint        # ESLint over JS/JSX files
+```
 
-When source code is added, a high-level overview of the code architecture and structure should be placed here. This should cover:
-- Major components or modules
-- Data flow
-- Key design patterns
-- Integration points
+No test runner is configured. `dist/` is gitignored and produced by `npm run build`.
 
-## Current Assets
+## Architecture
 
-The `documents/` directory contains the following image files:
-- brosur_paket_bisnis.jpeg
-- brosur_pilihan_harga.jpeg
-- jasa_instalasi_cctv.jpeg
-- logo.jpeg
-- paket cctv.jpeg
+Single-page application — all sections compose inside `src/App.jsx`. There is no router; navigation is anchor-based (`href="#section-id"`) with smooth scroll set globally in `src/index.css`.
 
-These appear to be marketing materials for CCTV packages and services.
+**Entry & composition:**
+- `index.html` — Indonesian-language SEO meta tags (title, description, keywords, OpenGraph)
+- `src/main.jsx` — React 19 `createRoot` + `<StrictMode>` mount
+- `src/App.jsx` — assembles the sections in order: `Navbar` → `Hero` → `WhyChooseUs` → `InternetPackages` → `CCTVSection` → `TargetAudience` → `Footer`, plus `FloatingWA` overlay
+- `src/data/constants.js` — exports `COMPANY` (name, phone, `waLink` deep link). Import this anywhere a WhatsApp CTA is needed rather than hardcoding the URL
 
----
-*This CLAUDE.md will be updated as the codebase evolves.*
+**Section behavior worth knowing:**
+- `InternetPackages` is the only component with internal state — a `tab` toggle between "Retail" (4 tiers) and "Bisnis Dedicated" (single card)
+- `Navbar` toggles `bg-slate-950/90 backdrop-blur` styling based on `window.scrollY > 20` via a scroll listener
+- `FloatingWA` is `position: fixed bottom-6 right-6` with a CSS ping ring animation; it sits above all sections
+
+**Styling:**
+- `src/index.css` is the only CSS entry. It hosts `@import "tailwindcss"`, the `@theme` color tokens (purple-500/700/800, indigo-900), the dark base body style, and all custom keyframe animations (`float`, `pulse-glow`, `fadeInUp`, `wa-ping`, `shimmer`) + utility classes (`gradient-text`, `card-glow`, `bg-grid`, `section-divider`)
+- `tailwind.config.js` mirrors the same color palette for IDE/IntelliSense
+- `src/App.css` is essentially empty — Tailwind utility classes handle all component styling
+
+**Branding & convention details** (also documented in `.github/copilot-instructions.md`):
+- Brand colors: `purple-500 #8B5CF6` (accent), `purple-700 #6D28D9` (secondary), `purple-800 #5B21B6` (primary), `indigo-900 #1E1B4B` (dark bg)
+- Mobile-first responsive design using `sm:` / `md:` / `lg:` breakpoints
+- Inline SVG icons only — no icon library, no raster UI icons
+- External WhatsApp links use `target="_blank" rel="noopener noreferrer"`
+- Currency formatted as Indonesian Rupiah: `Rp X.XXX.XXX` (dot thousands separator)
+- Section IDs that the navbar anchors to: `#hero`, `#features`, `#internet`, `#cctv`, `#footer`
+
+## Unused Assets
+
+`documents/` contains five JPEG marketing materials (CCTV brochures, price lists, logo). They are not referenced by any component and not deployed — likely source material kept for reference rather than runtime assets. `public/assets/` is also empty.

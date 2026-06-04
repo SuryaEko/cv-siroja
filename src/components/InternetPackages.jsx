@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { COMPANY } from '../data/constants'
+import { formatIDR } from '../utils/format'
 
 const retailPackages = [
-  { name: 'Super HEMAT', speed: '10 Mbps', price: 'Rp 125.000', popular: false },
-  { name: 'Standar',     speed: '15 Mbps', price: 'Rp 150.000', popular: false },
-  { name: 'Premium',     speed: '30 Mbps', price: 'Rp 200.000', popular: true  },
-  { name: 'Ultra',       speed: '50 Mbps', price: 'Rp 250.000', popular: false },
+  { name: 'Super HEMAT', speed: '10 Mbps', price: 125000, popular: false },
+  { name: 'Standar',     speed: '15 Mbps', price: 150000, popular: false },
+  { name: 'Premium',     speed: '30 Mbps', price: 200000, popular: true  },
+  { name: 'Ultra',       speed: '50 Mbps', price: 250000, popular: false },
 ]
 
 const sharedFeatures = ['Koneksi Cepat & Stabil', 'Jaringan Aman', 'Dukungan 24/7', 'Gratis Biaya Instalasi']
@@ -24,7 +25,7 @@ export default function InternetPackages() {
   const [tab, setTab] = useState('retail')
 
   return (
-    <section id="internet" className="py-24 bg-slate-900 relative overflow-hidden">
+    <section id="internet" className="py-28 bg-slate-900 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-purple-700/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,7 +104,7 @@ export default function InternetPackages() {
 
                   <div className="mb-6">
                     <span className={`text-2xl font-bold ${pkg.popular ? 'text-purple-300' : 'text-white'}`}>
-                      {pkg.price}
+                      {formatIDR(pkg.price)}
                     </span>
                     <span className="text-slate-500 text-sm"> / Bulan</span>
                   </div>
@@ -118,7 +119,7 @@ export default function InternetPackages() {
                   </ul>
 
                   <a
-                    href={COMPANY.waLink}
+                    href={COMPANY.waRetail(pkg.speed)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`block w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
@@ -154,7 +155,7 @@ export default function InternetPackages() {
               </div>
 
               <div className="mb-8">
-                <span className="text-3xl font-bold text-white">Rp 400.000</span>
+                <span className="text-3xl font-bold text-white">{formatIDR(400000)}</span>
                 <span className="text-slate-500 ml-1 text-sm">/ Bulan</span>
               </div>
 
@@ -168,7 +169,7 @@ export default function InternetPackages() {
               </div>
 
               <a
-                href={COMPANY.waLink}
+                href={COMPANY.waBisnis()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-4 rounded-xl transition-all duration-200 shadow-xl shadow-purple-900/40"
